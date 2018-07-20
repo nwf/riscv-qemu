@@ -28,7 +28,7 @@
 static uint64_t sifive_prci_read(void *opaque, hwaddr addr, unsigned int size)
 {
     if (addr == 0 /* PRCI_HFROSCCFG    */) {
-        return 1 << 31; /* ROSC_RDY    */
+        return 3 << 30; /* ROSC_RDY,EN */
     }
     if (addr == 4 /* PRCI_HFXOSCCFG    */) {
         return 3 << 30; /* XOSC_RDY,EN */
