@@ -27,11 +27,14 @@
 
 static uint64_t sifive_prci_read(void *opaque, hwaddr addr, unsigned int size)
 {
-    if (addr == 0 /* PRCI_HFROSCCFG */) {
-        return 1 << 31; /* ROSC_RDY */
+    if (addr == 0 /* PRCI_HFROSCCFG    */) {
+        return 1 << 31; /* ROSC_RDY    */
     }
-    if (addr == 8 /* PRCI_PLLCFG    */) {
-        return 1 << 31; /* PLL_LOCK */
+    if (addr == 8 /* PRCI_PLLCFG       */) {
+        return 1 << 31; /* PLL_LOCK    */
+    }
+    if (addr == 12 /* PRCI_PLLOUTDIV   */) {
+        return 1 << 7; /* plloutdivby1 */
     }
     hw_error("%s: read: addr=0x%x\n", __func__, (int)addr);
     return 0;
